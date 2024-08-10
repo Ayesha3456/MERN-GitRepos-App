@@ -1,0 +1,47 @@
+<!-- Bootstrap Navbar -->
+<nav class="navbar navbar-light bg-light">
+  <a class="navbar-brand mx-auto">GitHub Profile Report Generator</a>
+</nav>
+
+<div class="container mt-5">
+  <!-- Bootstrap Card for Input Box -->
+  <div class="card">
+    <div class="card-body">
+      <form [formGroup]="githubForm" (ngSubmit)="onSubmit()">
+        <div class="input-group">
+          <input 
+            formControlName="githubUrl" 
+            class="form-control" 
+            placeholder="Enter GitHub profile URL"
+          />
+          <div class="input-group-append">
+            <!-- Add a cancel icon using SVG -->
+            <button type="button" class="btn btn-outline-secondary" (click)="clearInput()">
+              <svg width="16" height="16" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
+                <path d="M16 8a8 8 0 1 0-16 0 8 8 0 0 0 16 0zm-1.5 0a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0zm-8.707-2.707a1 1 0 0 1 1.414 0L8 5.586l1.293-1.293a1 1 0 0 1 1.414 1.414L9.414 7l1.293 1.293a1 1 0 0 1-1.414 1.414L8 8.414l-1.293 1.293a1 1 0 0 1-1.414-1.414L6.586 8 5.293 6.707a1 1 0 0 1 0-1.414z"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary mt-3">Generate Report</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Display Repository Details -->
+  <div *ngIf="repositories.length > 0" class="mt-5">
+    <h3>Repositories</h3>
+    <div *ngFor="let repo of repositories" class="card mb-3">
+      <div class="card-body">
+        <h5 class="card-title">{{ repo.name }}</h5>
+        <p class="card-text">Language(s): {{ repo.language || 'No language data available' }}</p>
+        <p class="card-text">Description: {{ repo.description || 'No description available.' }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PDF Report Status -->
+  <div *ngIf="reportGenerated" class="alert alert-success mt-5" role="alert">
+    Report has been generated and downloaded successfully.
+  </div>
+</div>

@@ -1,0 +1,19 @@
+.input-group {
+    position: relative;
+  }
+  
+  .input-group-append {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  
+  .input-group .form-control {
+    border-radius: 0;
+  }
+  
+  .input-group .btn-outline-secondary {
+    border-radius: 0;
+    margin-left: -1px; /* Adjust spacing between input and button */
+  }
+  
